@@ -17,16 +17,10 @@ declare -a apps=(
 )
 
 # Workaround for some packages I havent figured how to build with buildah yet (using Containerfile)
+# Removed: "virt-install" "libvirt-daemon-config-network" "libvirt-daemon-kvm" "qemu-kvm" "qemu-user-binfmt" "virt-manager" "virt-viewer" "virt-top"
+
 declare -a pkgs=(
 "ufw"
-"virt-install"
-"libvirt-daemon-config-network"
-"libvirt-daemon-kvm"
-"qemu-kvm"
-"qemu-user-binfmt"
-"virt-manager"
-"virt-viewer"
-"virt-top"
 )
 
 
