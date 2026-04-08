@@ -32,7 +32,6 @@ modules:
         notify: true
         install:
           - org.gnome.Loupe
-          - org.xfce.thunar
           - org.gnumeric.Gnumeric
           - de.haeckerfelix.Fragments
           - io.github.celluloid_player.Celluloid
