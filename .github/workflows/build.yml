@@ -23,8 +23,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build with BlueBuild
         uses: blue-build/github-action@v1
         with:
-          recipe: recipe.yml               # ← now in root
+          recipe: recipes/recipe.yml
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
