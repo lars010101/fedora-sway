@@ -24,7 +24,7 @@ modules:
   - type: files
     files:
       - source: etc
-        destination: /
+        destination: /etc/
 
   - type: default-flatpaks
     configurations:
