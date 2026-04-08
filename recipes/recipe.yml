@@ -44,4 +44,5 @@ modules:
 
   - type: script
     scripts:
+      - setup-keyring
       - cleanup-flatpaks

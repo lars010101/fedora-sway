@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Auto-unlock GNOME Keyring on TTY login
+printf '%s\n' \
+  'auth       optional      pam_gnome_keyring.so' \
+  'session    optional      pam_gnome_keyring.so auto_start' \
+  'password   optional      pam_gnome_keyring.so' >> /etc/pam.d/login
+
+# Default empty keyring for new users
+mkdir -p /etc/skel/.local/share/keyrings
+echo -n "" > /etc/skel/.local/share/keyrings/default
+
