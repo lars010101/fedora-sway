@@ -2,7 +2,7 @@ name: Build Fedora Sway Image
 
 on:
   schedule:
-    - cron: "00 17 * * *"     # Daily at 17:00 UTC
+    - cron: "00 17 * * *"
   push:
     paths-ignore:
       - "**.md"
@@ -17,7 +17,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write          # Required for cosign signing
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -26,5 +26,5 @@ jobs:
       - name: Build with BlueBuild
         uses: blue-build/github-action@v1
         with:
-          recipe: recipes/recipe.yml     # ← Important: point to the recipes/ folder
+          recipe: recipes/recipe.yml      # ← This is the correct path
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
