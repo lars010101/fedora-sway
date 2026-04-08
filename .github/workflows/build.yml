@@ -2,13 +2,13 @@ name: Build Fedora Sway Image
 
 on:
   schedule:
-    - cron: "00 17 * * *"     # Daily build
+    - cron: "00 17 * * *"     # Daily at 17:00 UTC
   push:
     paths-ignore:
       - "**.md"
       - "**.txt"
   pull_request:
-  workflow_dispatch:          # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write         # Required for cosign signing
+      id-token: write          # Required for cosign signing
 
     steps:
       - name: Checkout repository
@@ -26,13 +26,5 @@ jobs:
       - name: Build with BlueBuild
         uses: blue-build/github-action@v1
         with:
-          recipe: recipe.yml
-          image-name: fedora-sway
-          tags: |
-            latest
-            ${{ github.sha }}
-          push-to-registry: true
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          recipe: recipes/recipe.yml     # ← Important: point to the recipes/ folder
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
