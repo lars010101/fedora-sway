@@ -2,29 +2,28 @@ name: Build Fedora Sway Image
 
 on:
   schedule:
-    - cron: "00 17 * * *"        # Daily at 17:00 UTC (shortly after official images)
+    - cron: "00 17 * * *"     # Daily build
   push:
     paths-ignore:
       - "**.md"
       - "**.txt"
-      - "LICENSE"
-      - "README.md"
   pull_request:
-  workflow_dispatch:             # Allows manual trigger from GitHub UI
+  workflow_dispatch:          # Allows manual trigger
 
 jobs:
   build:
-    name: Build Custom Sway Image
+    name: Build & Sign Image
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write          # Needed to push to GHCR
+      packages: write
+      id-token: write         # Required for cosign signing
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up BlueBuild
+      - name: Build with BlueBuild
         uses: blue-build/github-action@v1
         with:
           recipe: recipe.yml
@@ -36,6 +35,4 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      # Optional: Build a specific tagged version (useful for stable pinning)
-      # You can add another job later if you want separate stable/beta builds
+          cosign_private_key: ${{ secrets.SIGNING_SECRET }}
