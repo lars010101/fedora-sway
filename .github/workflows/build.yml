@@ -26,5 +26,5 @@ jobs:
       - name: Build with BlueBuild
         uses: blue-build/github-action@v1
         with:
-          recipe: recipes/recipe.yml      # ← This is the correct path
+          recipe: recipe.yml               # ← now in root
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
