@@ -16,18 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
       id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Login to Quay.io
-        uses: docker/login-action@v3
-        with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_ROBOT_USER }}
-          password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Build with BlueBuild
         uses: blue-build/github-action@v1
@@ -36,3 +30,5 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry: quay.io
           registry_namespace: primprim
+          registry_token: ${{ secrets.QUAY_TOKEN }}
+          registry_username: ${{ secrets.QUAY_ROBOT_USER }}
