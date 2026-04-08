@@ -1,60 +1,41 @@
-name: Build and push image
+name: Build Fedora Sway Image
 
 on:
   schedule:
-    - cron: '20 20 * * *'  # 8:20pm everyday
+    - cron: "00 17 * * *"        # Daily at 17:00 UTC (shortly after official images)
   push:
-    branches: [ main ]
+    paths-ignore:
+      - "**.md"
+      - "**.txt"
+      - "LICENSE"
+      - "README.md"
   pull_request:
-  workflow_dispatch:
+  workflow_dispatch:             # Allows manual trigger from GitHub UI
 
 jobs:
-  build-and-push:
+  build:
+    name: Build Custom Sway Image
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: write          # Needed to push to GHCR
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Free up disk space (optional but recommended)
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-
-      - name: Login to Quay.io
-        uses: redhat-actions/podman-login@v1
+      - name: Set up BlueBuild
+        uses: blue-build/github-action@v1
         with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_ROBOT_USER }}
-          password: ${{ secrets.QUAY_TOKEN }}
-
-      - name: Build with Buildah
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: ${{ vars.IMAGE_NAME }}
+          recipe: recipe.yml
+          image-name: fedora-sway
           tags: |
-            ${{ github.sha }}
             latest
-          containerfiles: ./Containerfile
-          oci: true
-          layers: true
-
-      - name: Push to Quay.io
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ${{ vars.IMAGE_NAME }}
-          tags: |
             ${{ github.sha }}
-            latest
-          registry: quay.io/${{ secrets.QUAY_USER }}
+          push-to-registry: true
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Verify push
-        run: |
-          echo "Image pushed:"
-          echo "quay.io/${{ secrets.QUAY_USER }}/${{ vars.IMAGE_NAME }}:${{ github.sha }}"
-          echo "quay.io/${{ secrets.QUAY_USER }}/${{ vars.IMAGE_NAME }}:latest"
+      # Optional: Build a specific tagged version (useful for stable pinning)
+      # You can add another job later if you want separate stable/beta builds

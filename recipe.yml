@@ -1,0 +1,46 @@
+name: fedora-sway
+description: Lean Fedora Atomic Sway nightly image
+
+base-image: quay.io/fedora-ostree-desktops/sway-atomic
+image-version: 43      # Use "latest" for stable, or "rawhide" for bleeding edge
+
+modules:
+  - type: rpm-ostree
+    install:
+      - wireguard-tools
+      - fail2ban
+      - rclone
+      - smartmontools
+      - iotop
+      - gh
+      - syncthing
+      - zram-generator-defaults
+      - google-inter-fonts
+      - jetbrains-mono-fonts
+    remove:
+      - firefox
+      - firefox-langpacks
+
+  - type: files
+    source: etc
+    destination: /
+
+  - type: default-flatpaks
+    system: true
+    notify: true
+    install:
+      - org.gnome.Loupe
+      - org.xfce.thunar
+      - org.gnumeric.Gnumeric
+      - de.haeckerfelix.Fragments
+      - io.github.celluloid_player.Celluloid
+      - com.protonvpn.www
+      - com.bitwarden.desktop
+    remove:
+      - org.libreoffice.LibreOffice
+      - com.transmissionbt.Transmission
+      - org.videolan.VLC
+
+  - type: script
+    scripts:
+      - cleanup-flatpaks
