@@ -15,7 +15,7 @@ modules:
       - gh
       - syncthing
       - zram-generator-defaults
-      - google-inter-fonts
+      - inter-fonts
       - jetbrains-mono-fonts
     remove:
       - firefox
