@@ -8,6 +8,7 @@ modules:
   - type: rpm-ostree
     install:
       - wireguard-tools
+      - protonvpn-cli
       - fail2ban
       - rclone
       - smartmontools
@@ -17,7 +18,6 @@ modules:
       - zram-generator-defaults
       - rsms-inter-fonts
       - jetbrains-mono-fonts
-      - qutebrowser
     remove:
       - firefox
       - firefox-langpacks
