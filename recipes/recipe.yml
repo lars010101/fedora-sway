@@ -22,8 +22,9 @@ modules:
       - firefox-langpacks
 
   - type: files
-    source: etc
-    destination: /
+    files:
+      - source: etc
+        destination: /
 
   - type: default-flatpaks
     configurations:
