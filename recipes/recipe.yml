@@ -17,6 +17,7 @@ modules:
       - zram-generator-defaults
       - rsms-inter-fonts
       - jetbrains-mono-fonts
+      - qutebrowser
     remove:
       - firefox
       - firefox-langpacks
