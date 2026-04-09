@@ -17,6 +17,7 @@ modules:
       - zram-generator-defaults
       - rsms-inter-fonts
       - jetbrains-mono-fonts
+      - neovim
     remove:
       - firefox
       - firefox-langpacks
