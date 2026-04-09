@@ -18,6 +18,8 @@ modules:
       - rsms-inter-fonts
       - jetbrains-mono-fonts
       - neovim
+      - zathura
+      - zathura-pdf-mupdf
     remove:
       - firefox
       - firefox-langpacks
