@@ -21,7 +21,7 @@ modules:
       - zathura
       - zathura-pdf-mupdf
       - mako
-remove:
+    remove:
       - firefox
       - firefox-langpacks
       - dunst
