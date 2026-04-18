@@ -21,7 +21,6 @@ modules:
       - zathura
       - zathura-pdf-mupdf
       - mako
-      - cloudflared
       - tesseract            
       - tesseract-langpack-eng
     remove:
