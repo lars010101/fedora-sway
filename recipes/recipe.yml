@@ -20,9 +20,11 @@ modules:
       - neovim
       - zathura
       - zathura-pdf-mupdf
-    remove:
+      - mako
+remove:
       - firefox
       - firefox-langpacks
+      - dunst
 
   - type: files
     files:
