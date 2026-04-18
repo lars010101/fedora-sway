@@ -21,6 +21,8 @@ modules:
       - zathura
       - zathura-pdf-mupdf
       - mako
+      - tesseract            
+      - tesseract-langpack-eng
     remove:
       - firefox
       - firefox-langpacks
