@@ -16,6 +16,7 @@ Based on `quay.io/fedora-ostree-desktops/sway-atomic` with a curated set of pack
 
 **Flatpaks (auto-installed on first boot):**
 - Loupe (image viewer), Gnumeric, Fragments (torrent), Celluloid (video), Bitwarden
+- Brave (browser), Obsidian
 
 **Removed Flatpaks:** LibreOffice, Transmission, VLC
 

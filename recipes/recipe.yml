@@ -42,6 +42,8 @@ modules:
           - org.gnumeric.Gnumeric
           - de.haeckerfelix.Fragments
           - io.github.celluloid_player.Celluloid
+          - md.obsidian.Obsidian
+          - com.brave.Browser
           - com.bitwarden.desktop
         remove:
           - org.libreoffice.LibreOffice
