@@ -11,6 +11,7 @@ Based on `quay.io/fedora-ostree-desktops/sway-atomic` with a curated set of pack
 - mako (notifications), tesseract + English OCR
 - Inter + JetBrains Mono fonts
 - zram-generator-defaults
+- restic
 
 **Removed from base:** firefox, firefox-langpacks, dunst
 

@@ -7,26 +7,26 @@ image-version: 43
 modules:
   - type: rpm-ostree
     install:
-      - wireguard-tools
-      - fail2ban
-      - rclone
+      - wireguard-tools           # Security VPN
+      - fail2ban                  # Security
+      - rclone                    # Backup
       - smartmontools
       - iotop
-      - gh
-      - syncthing
+      - gh                        # Github
+      - syncthing                 # Synch files
       - zram-generator-defaults
       - rsms-inter-fonts
       - jetbrains-mono-fonts
       - neovim
       - zathura
       - zathura-pdf-mupdf
-      - mako
-      - tesseract            
-      - tesseract-langpack-eng
+      - mako                      # Sway native notifications
+      - tesseract                 # OCR           
+      - tesseract-langpack-eng    # OCR
     remove:
       - firefox
       - firefox-langpacks
-      - dunst
+      - dunst                     # Non-sway native notifications
 
   - type: files
     files:
@@ -38,11 +38,11 @@ modules:
       - system: true
         notify: true
         install:
-          - org.gnome.Loupe
-          - org.gnumeric.Gnumeric
-          - de.haeckerfelix.Fragments
-          - io.github.celluloid_player.Celluloid
-          - md.obsidian.Obsidian
+          - org.gnome.Loupe                       # Image Viewer
+          - org.gnumeric.Gnumeric                 # Spreadsheets
+          - de.haeckerfelix.Fragments             # Torrents
+          - io.github.celluloid_player.Celluloid  # Video player
+          - md.obsidian.Obsidian                  # Wiki .md files
           - com.brave.Browser
           - com.bitwarden.desktop
         remove:
