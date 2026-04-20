@@ -14,6 +14,7 @@ modules:
       - mako                      # Sway native notifications
       - neovim
       - rclone                    # Backup
+      - restic                    # Backup
       - rsms-inter-fonts
       - smartmontools
       - syncthing                 # Synch files
