@@ -23,10 +23,10 @@ modules:
       - zathura
       - zathura-pdf-mupdf
       - zram-generator-defaults
-   remove:
-     - dunst                      # Non-sway native notifications
-     - firefox
-     - firefox-langpacks
+    remove:
+      - dunst                     # Non-sway native notifications
+      - firefox
+      - firefox-langpacks
 
   - type: files
     files:
