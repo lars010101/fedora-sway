@@ -17,6 +17,7 @@ modules:
       - restic                    # Backup
       - rsms-inter-fonts
       - smartmontools
+      - swayimg                   # Image Viewer
       - syncthing                 # Synch files
       - tesseract                 # OCR           
       - tesseract-langpack-eng    # OCR
@@ -44,7 +45,6 @@ modules:
           - de.haeckerfelix.Fragments             # Torrents
           - io.github.celluloid_player.Celluloid  # Video player
           - md.obsidian.Obsidian                  # Wiki .md files
-          - org.gnome.Loupe                       # Image Viewer
           - org.gnumeric.Gnumeric                 # Spreadsheets
         remove:
           - com.transmissionbt.Transmission
