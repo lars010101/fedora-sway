@@ -2,7 +2,9 @@ FROM cgr.dev/chainguard/wolfi-base:latest
 
 RUN apk update && apk add --no-cache \
     neovim \
-    gh 
+    gh \
+    sudo \
+    shadow
 
 # Create user (important for Distrobox)
 RUN adduser -D -u 1000 user && \
