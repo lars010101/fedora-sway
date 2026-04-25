@@ -11,18 +11,17 @@ modules:
       - fail2ban                  # Security
       - iotop
       - jetbrains-mono-fonts
-      - gh                        # Github
+#      - gh                        # Github
       - mako                      # Sway native notifications
-      - neovim
-      - rclone                    # Backup
-      - restic                    # Backup
+#      - neovim
+#      - restic                    # Backup
       - rsms-inter-fonts
-      - rtorrent
+#      - rtorrent
       - smartmontools
       - swayimg                   # Image Viewer
       - syncthing                 # Synch files
-      - tesseract                 # OCR           
-      - tesseract-langpack-eng    # OCR
+#      - tesseract                 # OCR           
+#      - tesseract-langpack-eng    # OCR
       - wireguard-tools           # Security VPN
       - zathura
       - zathura-pdf-mupdf
