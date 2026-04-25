@@ -7,6 +7,7 @@ RUN apk update && apk add --no-cache \
     shadow \
     restic \
     tesseract \
+    tesseract-lang-eng \
     git 
 
 # Create user (important for Distrobox)
