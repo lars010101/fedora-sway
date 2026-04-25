@@ -6,7 +6,6 @@ RUN apk update && apk add --no-cache \
     restic \
     rtorrent \
     tesseract \
-    tesseract-lang-eng \
     sudo \
     shadow \
     git
