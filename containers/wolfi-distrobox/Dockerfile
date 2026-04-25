@@ -6,7 +6,8 @@ RUN apk update && apk add --no-cache \
     sudo \
     shadow \
     restic \
-    rtorrent 
+    tesseract \
+    git 
 
 # Create user (important for Distrobox)
 RUN adduser -D -u 1000 user && \
