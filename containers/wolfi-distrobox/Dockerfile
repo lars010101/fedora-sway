@@ -4,7 +4,9 @@ RUN apk update && apk add --no-cache \
     neovim \
     gh \
     sudo \
-    shadow
+    shadow \
+    restic \
+    rtorrent 
 
 # Create user (important for Distrobox)
 RUN adduser -D -u 1000 user && \
