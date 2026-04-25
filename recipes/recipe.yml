@@ -7,6 +7,7 @@ image-version: 43
 modules:
   - type: rpm-ostree
     install:
+      - distrobox
       - fail2ban                  # Security
       - iotop
       - jetbrains-mono-fonts
@@ -16,6 +17,7 @@ modules:
       - rclone                    # Backup
       - restic                    # Backup
       - rsms-inter-fonts
+      - rtorrent
       - smartmontools
       - swayimg                   # Image Viewer
       - syncthing                 # Synch files
@@ -42,8 +44,7 @@ modules:
         install:
           - com.bitwarden.desktop
           - com.brave.Browser
-          - de.haeckerfelix.Fragments             # Torrents
-          - io.github.celluloid_player.Celluloid  # Video player
+          - io.mpv.Mpv
           - md.obsidian.Obsidian                  # Wiki .md files
           - org.gnumeric.Gnumeric                 # Spreadsheets
         remove:
