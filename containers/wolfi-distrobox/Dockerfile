@@ -2,11 +2,11 @@ FROM cgr.dev/chainguard/wolfi-base:latest
 
 RUN apk update && apk add --no-cache \
     neovim \
-    github-cli \
+    gh \
     restic \
     rtorrent \
     tesseract \
-    tesseract-ocr-eng \
+    tesseract-lang-eng \
     sudo \
     shadow \
     git
