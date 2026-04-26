@@ -32,3 +32,16 @@ jobs:
           registry_namespace: primprim
           registry_token: ${{ secrets.QUAY_TOKEN }}
           registry_username: ${{ secrets.QUAY_ROBOT_USER }}
+
+      - name: Cleanup old tags (keep last 10)
+        run: |
+          echo "Logging into Quay.io..."
+          crane auth login quay.io -u ${{ secrets.QUAY_ROBOT_USER }} -p ${{ secrets.QUAY_TOKEN }}
+
+          echo "Cleaning up old tags for fedora-sway (keeping last 10)..."
+          TAGS=$(crane ls quay.io/primprim/fedora-sway | sort -r | tail -n +11)
+
+          for tag in $TAGS; do
+            echo "Deleting tag: $tag"
+            crane delete quay.io/primprim/fedora-sway:$tag || true
+          done

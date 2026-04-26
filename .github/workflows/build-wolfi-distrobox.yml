@@ -42,3 +42,16 @@ jobs:
             quay.io/primprim/wolfi-distrobox:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Cleanup old tags (keep last 10)
+        run: |
+          echo "Logging into Quay.io..."
+          crane auth login quay.io -u ${{ secrets.QUAY_ROBOT_USER }} -p ${{ secrets.QUAY_TOKEN }}
+
+          echo "Cleaning up old tags for wolfi-distrobox (keeping last 10)..."
+          TAGS=$(crane ls quay.io/primprim/wolfi-distrobox | sort -r | tail -n +11)
+
+          for tag in $TAGS; do
+            echo "Deleting tag: $tag"
+            crane delete quay.io/primprim/wolfi-distrobox:$tag || true
+          done
