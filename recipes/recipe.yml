@@ -13,7 +13,7 @@ modules:
       - jetbrains-mono-fonts
       - mako                      # Sway native notifications
       - rsms-inter-fonts
-      - rtorrent
+      - aria2 
       - smartmontools
       - swayimg                   # Image Viewer
       - syncthing                 # Synch files
