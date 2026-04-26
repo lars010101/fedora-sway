@@ -46,19 +46,23 @@ jobs:
       - name: Install crane
         uses: imjasonh/setup-crane@v0.4
 
-      - name: Cleanup old tags
+      - name: Cleanup old tags (keep latest + last 10)
         run: |
-          echo "=== Cleaning up old tags for wolfi-distrobox ==="
+          echo "=== Cleaning up old tags ==="
           crane auth login quay.io -u ${{ secrets.QUAY_ROBOT_USER }} -p ${{ secrets.QUAY_TOKEN }}
 
-          # Keep only the 10 most recent tags
-          TAGS=$(crane ls quay.io/primprim/wolfi-distrobox | sort -r | tail -n +11)
+          REPO="quay.io/primprim/wolfi-distrobox"
 
-          if [ -z "$TAGS" ]; then
-            echo "No old tags to delete."
-          else
-            for tag in $TAGS; do
-              echo "Deleting: quay.io/primprim/wolfi-distrobox:$tag"
-              crane delete quay.io/primprim/wolfi-distrobox:$tag || true
-            done
-          fi
+          # Get all tags, keep 'latest' + the 10 most recent ones
+          ALL_TAGS=$(crane ls $REPO)
+          KEEP_TAGS=$(echo "$ALL_TAGS" | sort -r | head -n 10)
+          KEEP_TAGS="$KEEP_TAGS latest"   # Always protect 'latest'
+
+          echo "Tags to keep: $KEEP_TAGS"
+
+          for tag in $ALL_TAGS; do
+            if ! echo "$KEEP_TAGS" | grep -qw "$tag"; then
+              echo "Deleting tag: $tag"
+              crane delete $REPO:$tag || true
+            fi
+          done
