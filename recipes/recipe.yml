@@ -2,7 +2,7 @@ name: fedora-sway
 description: Lean Fedora Atomic Sway nightly image
 
 base-image: quay.io/fedora-ostree-desktops/sway-atomic
-image-version: 43
+image-version: 44
 
 modules:
   - type: rpm-ostree
